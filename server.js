@@ -3,9 +3,10 @@ const app = express();
 const port = 3000;
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const swaggerDocs = require('./lib/config/swagger');
 
 app.use(bodyParser.json());
-
+app.use(swaggerDocs);
 app.use('/users', require('./lib/routers/userRouter'));
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
