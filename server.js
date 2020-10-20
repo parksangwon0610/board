@@ -4,9 +4,11 @@ const port = 3000;
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const swaggerDocs = require('./lib/config/swagger');
-
+const sign = require('./lib/utils/signUtils');
 app.use(bodyParser.json());
 app.use(swaggerDocs);
+
+app.use(sign.checkApiKey);
 app.use('/users', require('./lib/routers/userRouter'));
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
